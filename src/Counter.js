@@ -47,7 +47,7 @@ class Counter extends React.Component {
             onClick={() => { this.props.doClick(this.props.id)
             clearInterval(this.props.theInterval)}}
             >
-                {this.state.currentValue} / {this.props.finalValue}
+                {this.state.currentValue} of {this.props.finalValue}
             </div>
         );
     }
