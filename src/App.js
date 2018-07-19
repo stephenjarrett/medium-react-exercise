@@ -1,10 +1,67 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Countdown from './Countdown.js';
+import Counter from './Counter.js';
 
-class App extends Component {
-  render() {
+class App extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			counterValues: []
+		};
+	}
+	
+	_convertToCountdown = (obj) => {
+  if (obj.value % 2 === 0) {
     return (
+      <Counter 
+      key={obj.id} 
+      id={obj.id} 
+      initialValue={obj.value}
+      finalValue={obj.value*10}
+      doClick={this._deleteCounterByID} />
+      );
+  }
+
+  else {
+    return (
+      <Countdown 
+      key={obj.id} 
+      id={obj.id} 
+      initialValue={obj.value} 
+      finalValue={(obj.value*-1)*10}
+      doClick={this._deleteCounterByID} />
+      );
+  }
+	}
+
+	_deleteCounterByID = (theID) => {
+		let newCounterArray = this.state.counterValues.filter((obj) => {
+			return obj.id !== theID;
+		});
+
+		this.setState({
+			counterValues: newCounterArray
+		})
+	}
+
+	_handleClick = () => {
+		// console.log('Clicked!');
+		let newObj = {
+			id: (new Date()).getTime(),
+			value: parseInt((Math.random() * 100)) + 1
+		}
+
+		this.setState({
+			// Do not use .push... you cannot change the existing array so use concat to make a new array
+			counterValues: this.state.counterValues.concat(newObj)
+		});
+	}
+
+	render() {
+		return (
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
@@ -12,12 +69,18 @@ class App extends Component {
         </header>
       
       <div>
+			<div className="container">
+			<button className='button' onClick={this._handleClick}>+</button>
+			<div className="counter-box">
+				{this.state.counterValues.map(this._convertToCountdown)}
+			</div>		
+		</div>
         
       </div>
 
       </div>
-    );
-  }
+		);
+	}
 }
 
 export default App;
