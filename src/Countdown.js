@@ -13,7 +13,7 @@ class Countdown extends React.Component {
             currentValue: props.initialValue
         };
         
-        let theInterval = setInterval(this._decreaseValue, 10);
+        let theInterval = setInterval(this._decreaseValue, 1000);
     }
 
     // Always write helper fns as arrow 

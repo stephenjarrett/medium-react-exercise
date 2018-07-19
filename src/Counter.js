@@ -13,7 +13,7 @@ class Counter extends React.Component {
             currentValue: props.initialValue
         };
         
-        let theInterval = setInterval(this._increaseValue, 10);
+        let theInterval = setInterval(this._increaseValue, 1000);
     }
 
     // Always write helper fns as arrow 

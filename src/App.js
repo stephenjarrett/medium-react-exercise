@@ -51,7 +51,7 @@ class App extends React.Component {
 		// console.log('Clicked!');
 		let newObj = {
 			id: (new Date()).getTime(),
-			value: parseInt((Math.random() * 100)) + 1
+			value: parseInt((Math.random() * 10)) + 1
 		}
 
 		this.setState({
